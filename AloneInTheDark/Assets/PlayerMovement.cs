@@ -14,10 +14,12 @@ public class PlayerMovement : MonoBehaviour {
     private float windSpeed = 0.0003f;
     private Boolean doGravity = false;
     private Boolean doWind = false;
+    private float cooldown = 1.0f;
+    private float timeStamp;
 
     // Use this for initialization
     void Start() {
-        //transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+        timeStamp = Time.time;
     }
 
     // Update is called once per frame
@@ -70,11 +72,20 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         if (Input.GetKeyDown(KeyCode.Space)) {
-            toggleGravity();
+            if (timeStamp <= Time.time)
+            {
+                toggleGravity();
+                timeStamp = Time.time + cooldown;
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftAlt)) {
-            toggleWind();
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        {
+            if (timeStamp <= Time.time)
+            {
+                toggleWind();
+                timeStamp = Time.time + cooldown;
+            }
         }
 
         Mathf.Clamp(vx, -xLimit, xLimit);
