@@ -1,15 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     private float vx = 0.25f;
     private float vy = 0.25f;
     private Rigidbody rigidBody;
-    private float attackCooldown = 2.0f;
+    private float attackCooldown = 0.4f;
     private float timeStamp;
     public Bullet bullet;
+    public float scrollSpeedX = 0.3f;
 
     // Start is called before the first frame update
     void Start()
@@ -33,20 +35,17 @@ public class Player : MonoBehaviour
     {
         if (timeStamp <= Time.time)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space))
             {
-                Instantiate(bullet, this.transform.position + new Vector3(1.0f, 0.0f, 0.0f), Quaternion.identity);
+                Instantiate(bullet, this.transform.position + new Vector3(0.5f, 0.0f, 0.0f), Quaternion.identity);
                 timeStamp = Time.time + attackCooldown;
             }
         }
-
-        
-
     }
 
     void handleMovement()
     {
-        Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        Vector3 pos = new Vector3(transform.position.x + scrollSpeedX, transform.position.y, transform.position.z);
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -64,7 +63,24 @@ public class Player : MonoBehaviour
         {
             pos.x = pos.x + vx;
         }
+        
+        pos.y = Mathf.Clamp(pos.y, -5.0f, 5.0f);
 
         rigidBody.MovePosition(pos);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Type otherType = other.GetComponent<Type>();
+
+        if (otherType != null) {
+            if (otherType.type == Type.objectTypes.enemy) {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+            if (otherType.type == Type.objectTypes.background) {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+        }
+    }
+
 }
