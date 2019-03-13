@@ -1,4 +1,4 @@
-# P1_AloneInTheDark
+# GaDe 2b Game Mehanics
 ### Excercise:
 ALONE IN THE CAVES
 
