@@ -10,25 +10,31 @@ public class Enemy : MonoBehaviour
     private float timeStamp;
     private float timeToLive = 25.0f;
     public Bullet bullet;
-    public float scrollSpeedX = 0.3f;
+    private float scrollSpeedX = 0.3f;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         timeStamp = Time.time + attackCooldown * Random.Range(0.5f, 3.0f);
         rigidBody = GetComponent<Rigidbody>();
         Destroy(this.gameObject, timeToLive);
     }
 
-    private void Update()
+    public void Update()
     {
         handleAttack();
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    public void FixedUpdate()
     {
         handleMovement();
+        Behaviour();
+    }
+
+    public virtual void Behaviour()
+    {
+        // define in subclasses
     }
 
     void handleAttack()
