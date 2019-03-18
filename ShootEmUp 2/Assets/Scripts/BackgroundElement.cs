@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class BackgroundElement : MonoBehaviour
 {
-    public float vx = -0.15f;
+    private float vx = 0.0f;
     private Rigidbody rigidBody;
     private float timeToLive = 25.0f;
+    public int health = 4;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,14 @@ public class BackgroundElement : MonoBehaviour
     void FixedUpdate()
     {
         handleMovement();
+    }
+
+    public void registerHit()
+    {
+        health -= 1;
+        if (health <= 0) {
+            Destroy(this.gameObject);
+        }
     }
 
     void handleMovement()

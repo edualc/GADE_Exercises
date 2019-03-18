@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Spawning : MonoBehaviour
 {
+    public List<PowerUp> powerUpTypes = new List<PowerUp>();
     public List<Enemy> enemyTypes = new List<Enemy>();
     public BackgroundElement bgElement;
     private float spawnCooldown = 3.0f;
     private float timeStamp;
     private int numEnemies;
     private Random rnd = new Random();
+    private int powerUpSpawnAttempt = 5;
 
     // Start is called before the first frame update
     private void Start()
@@ -21,8 +23,17 @@ public class Spawning : MonoBehaviour
     void FixedUpdate()
     {
         if (timeStamp <= Time.time) {
-            if (Random.Range(0,5) >= 3) {
+            if (Random.Range(0, 5) >= 3) {
                 spawnBackgroundElement();
+            }
+
+            if (Random.Range(0, 5) >= 2) {
+                powerUpSpawnAttempt += 1;
+            }
+
+            if (powerUpSpawnAttempt > 10) {
+                spawnPowerUp();
+                powerUpSpawnAttempt = 0;
             }
 
             spawnEnemyGroup();
@@ -41,6 +52,12 @@ public class Spawning : MonoBehaviour
         for (int i = 0; i < numEnemies; i++) {
             spawnEnemy();
         }
+    }
+
+    void spawnPowerUp()
+    {
+        PowerUp newPowerUp = powerUpTypes[Random.Range(0, powerUpTypes.Count)];
+        Instantiate(newPowerUp, new Vector3(this.transform.position.x + 20.0f, 0.0f, 0.0f), Quaternion.identity);
     }
 
     void spawnEnemy()

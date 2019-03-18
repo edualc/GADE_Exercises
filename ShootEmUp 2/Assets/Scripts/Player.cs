@@ -8,16 +8,19 @@ public class Player : MonoBehaviour
     private float vx = 0.15f;
     private float vy = 0.25f;
     private Rigidbody rigidBody;
-    private float attackCooldown = 0.4f;
+    private float attackCooldown = 0.3f;
     private float timeStamp;
     public Bullet bullet;
     private float scrollSpeedX = 0.3f;
+    public int health = 3;
+    public int shots = 1;
 
     // Start is called before the first frame update
     void Start()
     {
         timeStamp = Time.time;
         rigidBody = GetComponent<Rigidbody>();
+
     }
 
     private void Update()
@@ -28,7 +31,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        updateSize();
         handleMovement();
+    }
+
+    void updateSize()
+    {
+        //this.transform.localScale = this.transform.localScale * (1.0f + 0.1f * health);
     }
 
     void handleAttack()
@@ -37,7 +46,18 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Space))
             {
-                Instantiate(bullet, this.transform.position + new Vector3(0.5f, 0.0f, 0.0f), Quaternion.identity);
+
+                if (shots >= 3) {
+                    Instantiate(bullet, this.transform.position + new Vector3(0.5f, 0.5f, 0.0f), Quaternion.identity);
+                    Instantiate(bullet, this.transform.position + new Vector3(1.0f, 0.0f, 0.0f), Quaternion.identity);
+                    Instantiate(bullet, this.transform.position + new Vector3(0.5f, -0.5f, 0.0f), Quaternion.identity);
+                } else if (shots == 2) {
+                    Instantiate(bullet, this.transform.position + new Vector3(0.5f, 0.4f, 0.0f), Quaternion.identity);
+                    Instantiate(bullet, this.transform.position + new Vector3(0.5f, -0.4f, 0.0f), Quaternion.identity);
+                } else {
+                    Instantiate(bullet, this.transform.position + new Vector3(0.5f, 0.0f, 0.0f), Quaternion.identity);
+                }
+
                 timeStamp = Time.time + attackCooldown;
             }
         }
@@ -71,10 +91,24 @@ public class Player : MonoBehaviour
 
         if (otherType != null) {
             if (otherType.type == Type.objectTypes.enemy) {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                health += 1;
+
+                if (health <= 0) {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                } else {
+                    shots = 1;
+                }
             }
             if (otherType.type == Type.objectTypes.background) {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                health -= 1;
+                if (health <= 0) {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                }
+            }
+            if (otherType.type == Type.objectTypes.powerUp) {
+                Destroy(other.gameObject);
+                health += 1;
+                shots += 1;
             }
         }
     }

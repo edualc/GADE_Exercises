@@ -316,6 +316,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 4120226250633233710, guid: 6a1856a0c6fe3344f99d9848602f71be, type: 3}
+  health: 3
+  shots: 1
 --- !u!65 &603196647
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -429,6 +431,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9056a11fcd655b43a18ff38824e4f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerUpTypes:
+  - {fileID: 3988668488615340697, guid: 39b830a89337fc947bcf2d955f21b27e, type: 3}
   enemyTypes:
   - {fileID: 3441210922790515423, guid: 37d6577208bca734fbe91bbd6875536c, type: 3}
   - {fileID: 382873675587476990, guid: 6c5e3b7267f448e40967e1d7b21628d9, type: 3}
@@ -514,7 +518,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1bc4b2893ffccfa43b547c9fef6f0739, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -727,7 +731,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1bc4b2893ffccfa43b547c9fef6f0739, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

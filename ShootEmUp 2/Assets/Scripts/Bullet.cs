@@ -34,6 +34,7 @@ public class Bullet : MonoBehaviour
                 switch (otherType.type) {
                     case Type.objectTypes.background:
                         Destroy(this.gameObject);
+                        other.gameObject.GetComponent<BackgroundElement>().registerHit();
                         break;
                     case Type.objectTypes.enemy:
                     case Type.objectTypes.enemyBullet:
@@ -51,7 +52,13 @@ public class Bullet : MonoBehaviour
                         Destroy(this.gameObject);
                         break;
                     case Type.objectTypes.player:
-                        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                        Player playerObj = other.GetComponent<Player>();
+                        if (playerObj.health > 1) {
+                            playerObj.health -= 1;
+                            playerObj.shots = 1;
+                        } else {
+                            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                        }
                         break;
                     case Type.objectTypes.playerBullet:
                         Destroy(other.gameObject);
