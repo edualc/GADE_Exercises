@@ -1,15 +1,12 @@
-# GaDe 2b Game Mehanics
+# GaDe 3b ShootEmUp
 ### Excercise:
-ALONE IN THE CAVES
+Excercise.ShootEmUp
 
-### Description:
-You are alone in a cave. You can control your vehicle in 2d
-(horizontal/vertical) but only the speed (horizontal/vertical).
-If you collide somewhere the level will be reloaded and you
-start from the beginning. Create a level that gets harder.
+### Create a simple shootemup (sidescroller):
+You can control a spaceship. The spaceship can shoot
+and destroy enemies. background can't be destroyed. 
 
-### Visuals:
-Only boxes, max 3 colors.
-
-### Physics:
-Use your own simple physics. No physixs for control!
+### Technical restrictions: 
+Use triggers for background/sprite detection. Use a c#-
+component to determine enemy type. Destroy enemies with
+Destroy()-method. Spawn bullets with Instantiate()-method.
