@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class BackgroundElement : MonoBehaviour
 {
-    public float vx = -0.2f;
+    public float vx = -0.15f;
     private Rigidbody rigidBody;
     private float timeToLive = 25.0f;
-    public float scrollSpeedX = 0.3f;
 
     // Start is called before the first frame update
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
         Destroy(this.gameObject, timeToLive);
-        vx = vx + Random.Range(-0.1f, 0.1f);
     }
 
     // Update is called once per frame
@@ -25,7 +23,7 @@ public class BackgroundElement : MonoBehaviour
 
     void handleMovement()
     {
-        Vector3 pos = new Vector3(transform.position.x + scrollSpeedX, transform.position.y, transform.position.z);
+        Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         pos.x += vx;
 
         rigidBody.MovePosition(pos);

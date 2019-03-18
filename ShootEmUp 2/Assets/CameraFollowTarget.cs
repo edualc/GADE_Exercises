@@ -10,7 +10,7 @@ public class CameraFollowTarget : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        tempVector3.x = targetTransform.position.x;
+        tempVector3.x = targetTransform.position.x + 6;
         tempVector3.y = this.transform.position.y;
         tempVector3.z = this.transform.position.z;
 

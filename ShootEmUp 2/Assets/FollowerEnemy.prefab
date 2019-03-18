@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4479648be04504dba280e3809e20fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet: {fileID: 4905729986983780594, guid: 187d9f5b7451b3c419dfc1a3bd00ca8d, type: 3}
 --- !u!54 &6655437537608151866
 Rigidbody:
   m_ObjectHideFlags: 0

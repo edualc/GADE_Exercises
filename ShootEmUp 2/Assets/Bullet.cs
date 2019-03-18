@@ -28,8 +28,7 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Type otherType = other.GetComponent<Type>();
-        //print("OnTriggerEnter " + type.type + " -> " + otherType.type);
-
+        
         if (otherType != null) {
             if (type.type == Type.objectTypes.playerBullet) {
                 switch (otherType.type) {

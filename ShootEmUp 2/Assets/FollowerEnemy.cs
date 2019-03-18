@@ -20,14 +20,6 @@ public class FollowerEnemy : Enemy
     {
         transform.Translate(0.3f, 0.0f, 0.0f);
 
-        // "Look at Player"
-        transform.LookAt(player.transform);
-        Vector3 position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        position + (transform.forward * 0.1f);
-
-        rigidBody.MovePosition(position);
-
-        /*
         // "Match Coordinates"
         if (player.transform.position.y > transform.position.y) {
             transform.Translate(0.0f, 0.05f, 0.0f);
@@ -42,7 +34,7 @@ public class FollowerEnemy : Enemy
         if (player.transform.position.x < transform.position.x) {
             transform.Translate(-0.05f, 0.0f, 0.0f);
         }
-        /*
+
 
     }
 }

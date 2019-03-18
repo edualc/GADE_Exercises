@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    private float vx = 0.25f;
+    private float vx = 0.15f;
     private float vy = 0.25f;
     private Rigidbody rigidBody;
     private float attackCooldown = 0.4f;
