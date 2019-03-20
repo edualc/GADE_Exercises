@@ -31,7 +31,7 @@ public class Spawning : MonoBehaviour
                 powerUpSpawnAttempt += 1;
             }
 
-            if (powerUpSpawnAttempt > 10) {
+            if (powerUpSpawnAttempt > 1) {
                 spawnPowerUp();
                 powerUpSpawnAttempt = 0;
             }
