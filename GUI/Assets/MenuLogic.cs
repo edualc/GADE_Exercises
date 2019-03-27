@@ -18,8 +18,29 @@ public class MenuLogic : MonoBehaviour
 
     }
 
+    public void exit()
+    {
+        UnityEditor.EditorApplication.isPlaying = false;
+        Application.Quit();
+    }
+
+    public void menu()
+    {
+        SceneManager.LoadScene("menu", LoadSceneMode.Single);
+    }
+
+    public void reset()
+    {
+        play();
+    }
+
     public void play()
     {
         SceneManager.LoadScene("ingame", LoadSceneMode.Single);
+    }
+
+    public void won()
+    {
+        SceneManager.LoadScene("gameover", LoadSceneMode.Single);
     }
 }
